@@ -1,0 +1,57 @@
+{% extends 'invoice_base.html' %}
+{% block title %} Invoice {% endblock title %}
+
+{% block body %} 
+
+<div class="card text-center">
+  <div class="card-header">
+ 
+  <button type="button" class="btn btn-link">  <h5 class="card-title"><small><b>Invoice Documentation</b> </small></h5></button>
+  </div>
+  <div class="card-body">
+
+  {% for message in get_flashed_messages() %}
+    
+<button class ="btn btn-outline-success active">{{ message }}</button>
+    {% endfor %}
+    <br></br>
+    
+ <h5><b> Garibsons Pvt. Ltd </b></h5>
+  
+    <!-- <p class="card-text">Enter Invoice No.</p> -->
+       <br></br>
+<form action="" method="POST" enctype=multipart/form-data>
+ <a><b>Invoice No: </b></a>  <input type="text" placeholder='Invoice No.' name='inv' size="20">
+ <a><b>Year: </b></a>  <input type="text" placeholder='yy' name='yr' size="20">
+    <br></br>
+      <input type=file name=file>
+      
+      <input type=submit id="query_submit" class="btn btn-outline-success" active>
+      <br></br>
+</form>
+ <div>
+ <small class="text-muted">
+            Go Back to Proforma Invoice <a href="/garibsons"><b>Proforma Invoice</b></a>
+        </small>
+</div>
+<div class="card-footer text-muted">
+<p id="time"></p>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+var timestamp = '<?=time();?>';
+function updateTime(){
+  $('#time').html(Date(timestamp));
+  timestamp++;
+}
+$(function(){
+  setInterval(updateTime, 1000);
+});
+</script>
+
+  </div>
+</div>
+
+
+
+{% endblock body %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %} Proforma Invoice {% endblock title %}
+
+{% block body %} 
+
+
+<div class="card text-center">
+  <div class="card-header">
+  
+  <button type="button" class="btn btn-link">  <h5 class="card-title"><small><b>Proforma Invoice</b> </small></h5></button>
+  </div>
+  <div class="card-body">
+   {% for message in get_flashed_messages() %}
+    
+<button class ="btn btn-outline-success active">{{ message }}</button>
+    {% endfor %}
+    <br></br>
+
+    <h5><b> Garibsons Pvt. Ltd </b></h5>
+
+</div>
+
+    
+    </form>
+     
+<form action="" method="POST" enctype=multipart/form-data onsubmit="showDiv('loading')">
+
+  
+     <small><b>Pro. Inv. No: </b></small><input type="text" name="query" size="20" required><br>
+   <br></br>
+      <input type=file name=file class="btn btn-outline-primary-sm"> 
+   
+     <small> <input type=submit id="query_submit" class="btn btn-outline-success" active> </small>
+      
+</form>
+    
+
+<script>$.ajax({
+      type: 'POST',
+      url: "/parse_data",
+      data: JSON.stringify({values}),
+      contentType: "application/json;charset=utf-8",
+      dataType: "json",
+      success: function(data){
+        // do something with the received data
+      }
+    });</script>
+  <div>
+<small class="text-muted">
+            Customer Invoice <a href="/invoice"><b>Invoice</b></a>
+        </small></div>
+  
+<div class="card-footer text-muted">
+
+<small><p id="time"></p>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+var timestamp = '<?=time();?>';
+function updateTime(){
+  $('#time').html(Date(timestamp));
+  timestamp++;
+}
+$(function(){
+  setInterval(updateTime, 1000);
+});
+</script>
+  </small>
+  </div>
+</div>
+
+
+
+{% endblock body %}
